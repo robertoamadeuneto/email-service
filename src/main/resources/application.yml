@@ -1,0 +1,21 @@
+server:
+  port: 8081
+
+spring:
+  application:
+    name: email-service
+  cloud:
+    stream:
+      bindings:
+        user-service-input:
+          contentType: application/json
+          destination: user-service-output
+          group: email-service-input
+      rabbit:
+        bindings:
+          user-service-input:
+            consumer:
+              auto-bind-dlq: true
+              republish-to-dlq: true
+              transacted: true
+              binding-routing-key: user.created

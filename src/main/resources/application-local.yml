@@ -1,0 +1,3 @@
+spring:
+  rabbitmq:
+    addresses: amqp://localhost:5673

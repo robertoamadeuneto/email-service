@@ -1,0 +1,15 @@
+version: "3"
+
+services:
+  rabbit:
+    container_name: rabbit
+    image: rabbitmq:3-management
+    ports:
+      - "5673:5672"
+      - "15673:15672"
+    networks:
+      - production-network
+
+networks:
+  production-network:
+    driver: bridge
