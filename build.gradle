@@ -19,6 +19,7 @@ repositories {
 ext {
     set('springCloudVersion', "Greenwich.SR1")
     set('lombokVersion', '1.18.6')
+    set('sendGridVersion', '4.3.0')
 }
 
 dependencies {
@@ -28,6 +29,7 @@ dependencies {
 
     implementation 'org.springframework.boot:spring-boot-starter-actuator'
     implementation 'org.springframework.cloud:spring-cloud-stream'
+    implementation "com.sendgrid:sendgrid-java:${sendGridVersion}"
 
     runtimeOnly 'org.springframework.cloud:spring-cloud-stream-binder-rabbit'
 

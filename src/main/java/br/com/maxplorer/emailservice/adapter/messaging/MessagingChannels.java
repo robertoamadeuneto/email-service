@@ -1,4 +1,4 @@
-package br.com.maxplorer.emailservice.port.adapter.messaging;
+package br.com.maxplorer.emailservice.adapter.messaging;
 
 import org.springframework.cloud.stream.annotation.Input;
 import org.springframework.messaging.MessageChannel;
