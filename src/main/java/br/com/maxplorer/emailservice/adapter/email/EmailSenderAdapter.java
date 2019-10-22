@@ -34,7 +34,6 @@ public class EmailSenderAdapter implements EmailSenderPort {
         final com.sendgrid.Email to = new com.sendgrid.Email(email.to());
         final Content body = new Content("text/plain", email.body());
         final Mail mail = new Mail(from, email.subject(), to, body);
-        //final SendGrid sendGrid = new SendGrid("");
 
         Request request = new Request();
         try {
