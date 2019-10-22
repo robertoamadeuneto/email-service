@@ -5,7 +5,7 @@ import org.junit.Test;
 public class EmailServiceApplicationTest {
 
     @Test
-    public void shouldLoadSpringBootContext() {
+    public void shouldStartEmailServiceApplication() {
         EmailServiceApplication.main(new String[]{
                 "--spring.rabbitmq.addresses=address",
                 "--spring.rabbitmq.username=username",
