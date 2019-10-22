@@ -1,16 +1,13 @@
-server:
-  port: 8081
-
 spring:
   application:
-    name: to-service
+    name: email-service
   cloud:
     stream:
       bindings:
         user-service-input:
           contentType: application/json
           destination: user-service-output
-          group: to-service-input
+          group: email-service-input
       rabbit:
         bindings:
           user-service-input:

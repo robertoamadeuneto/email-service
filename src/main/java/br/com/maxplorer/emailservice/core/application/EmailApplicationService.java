@@ -16,7 +16,7 @@ public class EmailApplicationService {
         this.emailSenderPort = emailSenderPort;
     }
 
-    public void sendEmail(NewEmailCommand command) {
+    public void sendNewEmail(NewEmailCommand command) {
         emailSenderPort.send(Email.newEmail(command.to(), command.subject(), command.body()));
     }
 }

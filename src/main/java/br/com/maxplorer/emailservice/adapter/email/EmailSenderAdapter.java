@@ -10,6 +10,7 @@ import com.sendgrid.Request;
 import com.sendgrid.SendGrid;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.io.IOException;
@@ -19,6 +20,13 @@ public class EmailSenderAdapter implements EmailSenderPort {
 
     private static final Logger LOG = LoggerFactory.getLogger(EmailSenderAdapter.class);
 
+    private SendGrid sendGrid;
+
+    @Autowired
+    public EmailSenderAdapter(SendGrid sendGrid) {
+        this.sendGrid = sendGrid;
+    }
+
     @Override
     public void send(Email email) {
 
@@ -26,7 +34,7 @@ public class EmailSenderAdapter implements EmailSenderPort {
         final com.sendgrid.Email to = new com.sendgrid.Email(email.to());
         final Content body = new Content("text/plain", email.body());
         final Mail mail = new Mail(from, email.subject(), to, body);
-        final SendGrid sendGrid = new SendGrid("");
+        //final SendGrid sendGrid = new SendGrid("");
 
         Request request = new Request();
         try {
@@ -35,7 +43,7 @@ public class EmailSenderAdapter implements EmailSenderPort {
             request.setBody(mail.build());
             sendGrid.api(request);
         } catch (IOException e) {
-            LOG.error("Fail to send e-mail: {}", e);
+            LOG.error("Failed to send e-mail. \nCause: {} \nMessage: {}", e.getCause(), e.getMessage());
             throw new InternalServerException(e.getMessage());
         }
     }
