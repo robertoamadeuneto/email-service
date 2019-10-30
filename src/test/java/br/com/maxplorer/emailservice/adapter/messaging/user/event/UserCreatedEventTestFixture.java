@@ -16,7 +16,8 @@ class UserCreatedEventTestFixture {
     }
 
     static NewEmailCommand newEmailCommand() {
-        return new NewEmailCommand("james.gosling@email.com",
+        return new NewEmailCommand("James Gosling",
+                "james.gosling@email.com",
                 "Welcome to Maxplorer",
                 "Thanks for subscribing, James Gosling");
     }

@@ -9,7 +9,8 @@ public class EmailServiceApplicationTest {
         EmailServiceApplication.main(new String[]{
                 "--spring.rabbitmq.addresses=address",
                 "--spring.rabbitmq.username=username",
-                "--spring.rabbitmq.password=password"
+                "--spring.rabbitmq.password=password",
+                "--sendgrid.key=key"
         });
     }
 }

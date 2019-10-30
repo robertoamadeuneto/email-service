@@ -9,7 +9,8 @@ class EmailApplicationServiceTestFixture {
     }
 
     static NewEmailCommand newEmailCommand() {
-        return new NewEmailCommand("james.gosling@email.com",
+        return new NewEmailCommand("James Gosling",
+                "james.gosling@email.com",
                 "I want to learn Java",
                 "I'm searching for Java lessons");
     }

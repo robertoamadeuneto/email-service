@@ -1,8 +1,22 @@
 version: "3"
 
 services:
-  rabbit:
-    container_name: rabbit
+  mongodb:
+    container_name: mongodb
+    image: mongo
+    ports:
+      - "27018:27017"
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: email_service
+      MONGO_INITDB_ROOT_PASSWORD: email_service
+      MONGO_INITDB_DATABASE: email_service
+    volumes:
+      - "./.volumes/mongodb:/data/db"
+      - "./mongo-init.js:/docker-entrypoint-initdb.d/mongo-init.js:ro"
+    networks:
+      - production-network
+  rabbitmq:
+    container_name: rabbitmq
     image: rabbitmq:3-management
     ports:
       - "5673:5672"

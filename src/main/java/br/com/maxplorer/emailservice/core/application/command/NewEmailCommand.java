@@ -14,6 +14,7 @@ import lombok.experimental.Accessors;
 @Accessors(fluent = true)
 public class NewEmailCommand {
 
+    private String fullName;
     private String to;
     private String subject;
     private String body;

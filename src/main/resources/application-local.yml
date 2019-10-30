@@ -2,5 +2,8 @@ server:
   port: 8081
 
 spring:
+  data:
+    mongodb:
+      uri: mongodb://email_service:email_service@localhost:27018/email_service
   rabbitmq:
     addresses: amqp://localhost:5673
