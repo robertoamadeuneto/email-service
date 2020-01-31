@@ -27,6 +27,6 @@ public class UserServiceMessagingListener {
 
         LOG.info("Receiving event from user-service: {}", event);
 
-        emailApplicationService.sendNewEmail(event.toNewEmailCommand());
+        emailApplicationService.sendUserCreatedEvent(event.toNewEmailCommand());
     }
 }

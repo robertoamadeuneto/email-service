@@ -35,8 +35,8 @@ public class EmailSenderAdapter implements EmailSenderPort {
         final Content body = new Content("text/plain", email.body());
         final Mail mail = new Mail(from, email.subject(), to, body);
 
-        Request request = new Request();
         try {
+            Request request = new Request();
             request.setMethod(Method.POST);
             request.setEndpoint("mail/send");
             request.setBody(mail.build());

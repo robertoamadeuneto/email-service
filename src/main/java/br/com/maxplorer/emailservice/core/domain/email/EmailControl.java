@@ -6,7 +6,7 @@ import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-import java.time.LocalDateTime;
+import java.time.OffsetDateTime;
 
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 @AllArgsConstructor
@@ -18,5 +18,5 @@ public class EmailControl {
     private String fullName;
     private String hash;
     private Boolean active;
-    private LocalDateTime validUntil;
+    private OffsetDateTime validUntil;
 }

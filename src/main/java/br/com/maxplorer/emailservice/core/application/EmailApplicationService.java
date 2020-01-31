@@ -8,7 +8,8 @@ import br.com.maxplorer.emailservice.core.domain.email.EmailSenderPort;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDateTime;
+import java.time.OffsetDateTime;
+import java.util.UUID;
 
 @Service
 public class EmailApplicationService {
@@ -23,10 +24,10 @@ public class EmailApplicationService {
         this.emailControlRepository = emailControlRepository;
     }
 
-    public void sendNewEmail(NewEmailCommand command) {
+    public void sendUserCreatedEvent(NewEmailCommand command) {
 
         emailSenderPort.send(Email.newEmail(command.to(), command.subject(), command.body()));
 
-        emailControlRepository.save(new EmailControl(command.to(), command.fullName(), "", true, LocalDateTime.now()));
+        emailControlRepository.save(new EmailControl(command.to(), command.fullName(), UUID.randomUUID().toString(), true, OffsetDateTime.now().plusDays(1)));
     }
 }
