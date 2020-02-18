@@ -12,10 +12,8 @@ import lombok.experimental.Accessors;
 @Getter
 @EqualsAndHashCode
 @Accessors(fluent = true)
-public class NewEmailCommand {
+public class UserCreatedEmailCommand {
 
-    private String fullName;
     private String to;
-    private String subject;
-    private String body;
+    private String fullName;
 }

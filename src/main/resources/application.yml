@@ -15,7 +15,7 @@ spring:
               auto-bind-dlq: true
               republish-to-dlq: true
               transacted: true
-              binding-routing-key: user.created
+              binding-routing-key: user-service.user.#
 
-sendgrid:
+send-grid:
   key: key

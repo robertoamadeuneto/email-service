@@ -1,7 +1,7 @@
 package br.com.maxplorer.emailservice.adapter.messaging.user.listener;
 
 import br.com.maxplorer.emailservice.adapter.messaging.user.event.UserCreatedEvent;
-import br.com.maxplorer.emailservice.core.application.command.NewEmailCommand;
+import br.com.maxplorer.emailservice.core.application.command.UserCreatedEmailCommand;
 
 import java.util.UUID;
 
@@ -11,7 +11,7 @@ class UserServiceMessagingListenerTestFixture {
     }
 
     static String userCreatedEventRoutingKey() {
-        return "user.created";
+        return "user-service.user.created";
     }
 
     static UserCreatedEvent userCreatedEvent() {
@@ -20,10 +20,7 @@ class UserServiceMessagingListenerTestFixture {
                 "james.gosling@email.com");
     }
 
-    static NewEmailCommand newEmailCommand() {
-        return new NewEmailCommand("James Gosling",
-                "james.gosling@email.com",
-                "Welcome to Maxplorer",
-                "Thanks for subscribing, James Gosling");
+    static UserCreatedEmailCommand newEmailCommand() {
+        return new UserCreatedEmailCommand("james.gosling@email.com", "James Gosling");
     }
 }

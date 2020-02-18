@@ -19,4 +19,12 @@ public class EmailControl {
     private String hash;
     private Boolean active;
     private OffsetDateTime validUntil;
+
+    public static EmailControl newEmailControl(String email, String fullName) {
+        return new EmailControl(email,
+                fullName,
+                "a",
+                true,
+                OffsetDateTime.now().plusDays(1L));
+    }
 }

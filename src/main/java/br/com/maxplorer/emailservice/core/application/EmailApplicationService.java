@@ -1,6 +1,6 @@
 package br.com.maxplorer.emailservice.core.application;
 
-import br.com.maxplorer.emailservice.core.application.command.NewEmailCommand;
+import br.com.maxplorer.emailservice.core.application.command.UserCreatedEmailCommand;
 import br.com.maxplorer.emailservice.core.domain.email.Email;
 import br.com.maxplorer.emailservice.core.domain.email.EmailControl;
 import br.com.maxplorer.emailservice.core.domain.email.EmailControlRepository;
@@ -8,14 +8,11 @@ import br.com.maxplorer.emailservice.core.domain.email.EmailSenderPort;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.time.OffsetDateTime;
-import java.util.UUID;
-
 @Service
 public class EmailApplicationService {
 
-    private EmailSenderPort emailSenderPort;
-    private EmailControlRepository emailControlRepository;
+    private final EmailSenderPort emailSenderPort;
+    private final EmailControlRepository emailControlRepository;
 
     @Autowired
     public EmailApplicationService(EmailSenderPort emailSenderPort,
@@ -24,10 +21,14 @@ public class EmailApplicationService {
         this.emailControlRepository = emailControlRepository;
     }
 
-    public void sendUserCreatedEvent(NewEmailCommand command) {
+    public void sendUserCreatedEmail(UserCreatedEmailCommand command) {
 
-        emailSenderPort.send(Email.newEmail(command.to(), command.subject(), command.body()));
+        final EmailControl emailControl = EmailControl.newEmailControl(command.to(), command.fullName());
 
-        emailControlRepository.save(new EmailControl(command.to(), command.fullName(), UUID.randomUUID().toString(), true, OffsetDateTime.now().plusDays(1)));
+        emailControlRepository.save(emailControl);
+
+        final Email email = Email.newUserCreatedEmail(command.to(), command.fullName());
+
+        emailSenderPort.send(email);
     }
 }

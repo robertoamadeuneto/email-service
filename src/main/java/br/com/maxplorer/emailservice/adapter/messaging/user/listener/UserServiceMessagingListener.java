@@ -15,18 +15,18 @@ public class UserServiceMessagingListener {
 
     private static final Logger LOG = LoggerFactory.getLogger(UserServiceMessagingListener.class);
 
-    private EmailApplicationService emailApplicationService;
+    private final EmailApplicationService emailApplicationService;
 
     @Autowired
     public UserServiceMessagingListener(EmailApplicationService emailApplicationService) {
         this.emailApplicationService = emailApplicationService;
     }
 
-    @StreamListener(value = MessagingChannels.USER_SERVICE_INPUT)
+    @StreamListener(value = MessagingChannels.USER_SERVICE_INPUT, condition = "headers['amqp_receivedRoutingKey'] == 'user-service.user.created'")
     public void userCreatedEvent(@Payload UserCreatedEvent event) {
 
-        LOG.info("Receiving event from user-service: {}", event);
+        LOG.info("Receiving an event from user-service: {}", event);
 
-        emailApplicationService.sendUserCreatedEvent(event.toNewEmailCommand());
+        emailApplicationService.sendUserCreatedEmail(event.toUserCreatedEmailCommand());
     }
 }

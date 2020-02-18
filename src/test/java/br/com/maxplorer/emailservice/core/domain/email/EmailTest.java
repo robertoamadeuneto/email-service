@@ -9,10 +9,8 @@ public class EmailTest {
     @Test
     public void shouldReturnNewEmail() {
 
-        final Email newEmail = Email.newEmail("james.gosling@email.com",
-                "I want to learn Java",
-                "I'm searching for Java lessons");
+        final Email newUserCreatedEmail = Email.newUserCreatedEmail("james.gosling@email.com", "James Gosling");
 
-        assertThat(newEmail).isEqualToComparingFieldByFieldRecursively(EmailTestFixture.newEmail());
+        assertThat(newUserCreatedEmail).isEqualToComparingFieldByFieldRecursively(EmailTestFixture.newUserCreatedEmail());
     }
 }

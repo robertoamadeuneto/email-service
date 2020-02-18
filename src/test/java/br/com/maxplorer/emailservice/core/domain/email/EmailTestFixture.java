@@ -5,9 +5,9 @@ class EmailTestFixture {
     private EmailTestFixture() {
     }
 
-    static Email newEmail() {
+    static Email newUserCreatedEmail() {
         return new Email("james.gosling@email.com",
-                "I want to learn Java",
-                "I'm searching for Java lessons");
+                "Welcome to Maxplorer",
+                "Thanks for subscribing, James Gosling");
     }
 }

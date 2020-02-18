@@ -8,7 +8,7 @@ import org.springframework.stereotype.Repository;
 @Repository
 public class EmailControlRepositoryJpa implements EmailControlRepository {
 
-    private EmailControlRepositoryJpaSpringData emailControlRepositoryJpaSpringData;
+    private final EmailControlRepositoryJpaSpringData emailControlRepositoryJpaSpringData;
 
     @Autowired
     public EmailControlRepositoryJpa(EmailControlRepositoryJpaSpringData emailControlRepositoryJpaSpringData) {

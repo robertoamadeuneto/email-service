@@ -29,7 +29,7 @@ public class EmailApplicationServiceTest {
     @Test
     public void shouldSendUserCreatedEmail() {
 
-        emailApplicationService.sendUserCreatedEvent(EmailApplicationServiceTestFixture.newEmailCommand());
+        emailApplicationService.sendUserCreatedEmail(EmailApplicationServiceTestFixture.userCreatedEmailCommand());
 
         verify(emailSenderPort).send(EmailApplicationServiceTestFixture.email());
     }

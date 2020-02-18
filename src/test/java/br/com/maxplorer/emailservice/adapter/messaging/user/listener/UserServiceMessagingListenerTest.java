@@ -31,13 +31,14 @@ public class UserServiceMessagingListenerTest {
     @Test
     public void shouldReceiveUserCreatedEvent() {
 
-        doNothing().when(emailApplicationService).sendUserCreatedEvent(any());
+        doNothing().when(emailApplicationService).sendUserCreatedEmail(any());
 
-        Message<UserCreatedEvent> message = MessageBuilder.withPayload(UserServiceMessagingListenerTestFixture.userCreatedEvent())
+        final Message<UserCreatedEvent> message = MessageBuilder.withPayload(UserServiceMessagingListenerTestFixture.userCreatedEvent())
                 .setHeader(AmqpHeaders.RECEIVED_ROUTING_KEY, UserServiceMessagingListenerTestFixture.userCreatedEventRoutingKey())
                 .build();
+
         channels.userServiceInput().send(message);
 
-        verify(emailApplicationService).sendUserCreatedEvent(eq(UserServiceMessagingListenerTestFixture.newEmailCommand()));
+        verify(emailApplicationService).sendUserCreatedEmail(eq(UserServiceMessagingListenerTestFixture.newEmailCommand()));
     }
 }

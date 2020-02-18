@@ -18,9 +18,7 @@ public class Email {
     private String subject;
     private String body;
 
-    public static Email newEmail(String to,
-                                 String subject,
-                                 String body) {
-        return new Email(to, subject, body);
+    public static Email newUserCreatedEmail(String to, String fullName) {
+        return new Email(to, "Welcome to Maxplorer", String.format("Thanks for subscribing, %s", fullName));
     }
 }

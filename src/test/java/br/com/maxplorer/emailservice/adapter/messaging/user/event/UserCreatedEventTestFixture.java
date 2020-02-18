@@ -1,6 +1,6 @@
 package br.com.maxplorer.emailservice.adapter.messaging.user.event;
 
-import br.com.maxplorer.emailservice.core.application.command.NewEmailCommand;
+import br.com.maxplorer.emailservice.core.application.command.UserCreatedEmailCommand;
 
 import java.util.UUID;
 
@@ -15,10 +15,7 @@ class UserCreatedEventTestFixture {
                 "james.gosling@email.com");
     }
 
-    static NewEmailCommand newEmailCommand() {
-        return new NewEmailCommand("James Gosling",
-                "james.gosling@email.com",
-                "Welcome to Maxplorer",
-                "Thanks for subscribing, James Gosling");
+    static UserCreatedEmailCommand newEmailCommand() {
+        return new UserCreatedEmailCommand("james.gosling@email.com", "James Gosling");
     }
 }

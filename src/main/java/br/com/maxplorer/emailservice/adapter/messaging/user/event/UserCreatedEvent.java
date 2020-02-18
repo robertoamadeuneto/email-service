@@ -1,6 +1,6 @@
 package br.com.maxplorer.emailservice.adapter.messaging.user.event;
 
-import br.com.maxplorer.emailservice.core.application.command.NewEmailCommand;
+import br.com.maxplorer.emailservice.core.application.command.UserCreatedEmailCommand;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
@@ -25,7 +25,7 @@ public class UserCreatedEvent {
     @JsonProperty("email")
     private String email;
 
-    public NewEmailCommand toNewEmailCommand() {
-        return new NewEmailCommand(fullName, email, "Welcome to Maxplorer", String.format("Thanks for subscribing, %s", fullName));
+    public UserCreatedEmailCommand toUserCreatedEmailCommand() {
+        return new UserCreatedEmailCommand(email, fullName);
     }
 }
