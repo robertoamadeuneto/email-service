@@ -28,7 +28,6 @@ public class EmailApplicationServiceTest {
 
     @Test
     public void shouldSendUserCreatedEmail() {
-
         emailApplicationService.sendUserCreatedEmail(EmailApplicationServiceTestFixture.userCreatedEmailCommand());
 
         verify(emailSenderPort).send(EmailApplicationServiceTestFixture.email());

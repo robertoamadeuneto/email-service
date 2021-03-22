@@ -20,7 +20,7 @@ public class EmailControl {
     private Boolean active;
     private OffsetDateTime validUntil;
 
-    public static EmailControl newEmailControl(String email, String fullName) {
+    public static EmailControl newEmailControl(final String email, final String fullName) {
         return new EmailControl(email,
                 fullName,
                 "a",

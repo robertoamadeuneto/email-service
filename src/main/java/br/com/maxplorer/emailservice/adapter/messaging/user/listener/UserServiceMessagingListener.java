@@ -3,29 +3,22 @@ package br.com.maxplorer.emailservice.adapter.messaging.user.listener;
 import br.com.maxplorer.emailservice.adapter.messaging.MessagingChannels;
 import br.com.maxplorer.emailservice.adapter.messaging.user.event.UserCreatedEvent;
 import br.com.maxplorer.emailservice.core.application.EmailApplicationService;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.AllArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.cloud.stream.annotation.StreamListener;
 import org.springframework.messaging.handler.annotation.Payload;
 import org.springframework.stereotype.Service;
 
+@AllArgsConstructor
+@Slf4j
 @Service
 public class UserServiceMessagingListener {
 
-    private static final Logger LOG = LoggerFactory.getLogger(UserServiceMessagingListener.class);
-
     private final EmailApplicationService emailApplicationService;
 
-    @Autowired
-    public UserServiceMessagingListener(EmailApplicationService emailApplicationService) {
-        this.emailApplicationService = emailApplicationService;
-    }
-
     @StreamListener(value = MessagingChannels.USER_SERVICE_INPUT, condition = "headers['amqp_receivedRoutingKey'] == 'user-service.user.created'")
-    public void userCreatedEvent(@Payload UserCreatedEvent event) {
-
-        LOG.info("Receiving an event from user-service: {}", event);
+    public void userCreatedEvent(@Payload final UserCreatedEvent event) {
+        log.info("Receiving an event from user-service: {}", event);
 
         emailApplicationService.sendUserCreatedEmail(event.toUserCreatedEmailCommand());
     }

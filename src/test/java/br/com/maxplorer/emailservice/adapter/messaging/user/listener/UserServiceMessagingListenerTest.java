@@ -30,7 +30,6 @@ public class UserServiceMessagingListenerTest {
 
     @Test
     public void shouldReceiveUserCreatedEvent() {
-
         doNothing().when(emailApplicationService).sendUserCreatedEmail(any());
 
         final Message<UserCreatedEvent> message = MessageBuilder.withPayload(UserServiceMessagingListenerTestFixture.userCreatedEvent())

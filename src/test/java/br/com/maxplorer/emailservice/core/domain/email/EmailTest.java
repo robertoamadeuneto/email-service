@@ -8,7 +8,6 @@ public class EmailTest {
 
     @Test
     public void shouldReturnNewEmail() {
-
         final Email newUserCreatedEmail = Email.newUserCreatedEmail("james.gosling@email.com", "James Gosling");
 
         assertThat(newUserCreatedEmail).isEqualToComparingFieldByFieldRecursively(EmailTestFixture.newUserCreatedEmail());

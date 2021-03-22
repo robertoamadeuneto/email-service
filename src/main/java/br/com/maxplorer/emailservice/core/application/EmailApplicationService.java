@@ -5,24 +5,17 @@ import br.com.maxplorer.emailservice.core.domain.email.Email;
 import br.com.maxplorer.emailservice.core.domain.email.EmailControl;
 import br.com.maxplorer.emailservice.core.domain.email.EmailControlRepository;
 import br.com.maxplorer.emailservice.core.domain.email.EmailSenderPort;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
+@AllArgsConstructor
 @Service
 public class EmailApplicationService {
 
     private final EmailSenderPort emailSenderPort;
     private final EmailControlRepository emailControlRepository;
 
-    @Autowired
-    public EmailApplicationService(EmailSenderPort emailSenderPort,
-                                   EmailControlRepository emailControlRepository) {
-        this.emailSenderPort = emailSenderPort;
-        this.emailControlRepository = emailControlRepository;
-    }
-
-    public void sendUserCreatedEmail(UserCreatedEmailCommand command) {
-
+    public void sendUserCreatedEmail(final UserCreatedEmailCommand command) {
         final EmailControl emailControl = EmailControl.newEmailControl(command.to(), command.fullName());
 
         emailControlRepository.save(emailControl);

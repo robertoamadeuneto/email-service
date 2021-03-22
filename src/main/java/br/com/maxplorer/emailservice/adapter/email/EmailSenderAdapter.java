@@ -7,18 +7,16 @@ import com.sendgrid.Mail;
 import com.sendgrid.Method;
 import com.sendgrid.Request;
 import com.sendgrid.SendGrid;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 import java.io.IOException;
 
+@Slf4j
 @Component
 public class EmailSenderAdapter implements EmailSenderPort {
-
-    private static final Logger LOG = LoggerFactory.getLogger(EmailSenderAdapter.class);
 
     private final String sendGridKey;
 
@@ -28,8 +26,7 @@ public class EmailSenderAdapter implements EmailSenderPort {
     }
 
     @Override
-    public void send(Email email) {
-
+    public void send(final Email email) {
         final com.sendgrid.Email from = new com.sendgrid.Email("no-reply@maxplorer.com.br", "Maxplorer");
         final com.sendgrid.Email to = new com.sendgrid.Email(email.to());
         final Content body = new Content("text/plain", email.body());
@@ -37,13 +34,13 @@ public class EmailSenderAdapter implements EmailSenderPort {
         final SendGrid sendGrid = new SendGrid(sendGridKey);
 
         try {
-            Request request = new Request();
+            final Request request = new Request();
             request.setMethod(Method.POST);
             request.setEndpoint("mail/send");
             request.setBody(mail.build());
             sendGrid.api(request);
         } catch (IOException e) {
-            LOG.error("Failed to send e-mail. \nCause: {} \nMessage: {}", e.getCause(), e.getMessage());
+            log.error("Failed to send e-mail. \nCause: {} \nMessage: {}", e.getCause(), e.getMessage());
         }
     }
 }

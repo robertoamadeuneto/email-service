@@ -9,7 +9,6 @@ public class UserCreatedEventTest {
 
     @Test
     public void shouldReturnNewEmailCommand() {
-
         final UserCreatedEmailCommand userCreatedEmailCommand = UserCreatedEventTestFixture.userCreatedEvent().toUserCreatedEmailCommand();
 
         assertThat(userCreatedEmailCommand).isEqualToComparingFieldByFieldRecursively(UserCreatedEventTestFixture.newEmailCommand());

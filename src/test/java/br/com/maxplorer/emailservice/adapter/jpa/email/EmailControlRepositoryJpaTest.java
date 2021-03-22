@@ -25,7 +25,6 @@ public class EmailControlRepositoryJpaTest {
 
     @Test
     public void shouldSave() {
-
         final EmailControl emailControl = EmailControlRepositoryJpaTestFixture.emailControl();
 
         emailControlRepositoryJpa.save(emailControl);
